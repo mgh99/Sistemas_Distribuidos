@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+  
+  <head>
+    <title>WebSocket test</title>
+  </head>
+
+  <body>
+    <h1>WebSocket Test</h1>
+    <div id="log"></div>
+  </body>
+
+<script language="javascript" type="text/javascript">
+
+    //var wsUri = "ws://nebrija.sockets.com/v2/test"; //esto es la direccion de un socket
+    var wsUri = "wss://demo.piesocket.com/v3/channel_1?api_key=oCdCMcMPQpbvNjUIzqtvF1d2X2okWpDQj4AwARJuAgtjhzKxVEjQU6IdCjwm&notify_self"
+    var log;
+
+    function init()
+    {
+      log = document.getElementById("log");
+      testWebSocket();
+    }
+
+    function testWebSocket() 
+    {
+      websocket = new WebSocket(wsUri);
+      websocket.onopen    = function(evt) { onOpen(evt)    }; //cuando se abre el socket
+      websocket.onmessage = function(evt) { onMessage(evt) };
+      websocket.onclose   = function(evt) { onClose(evt)   }; //esto es para cuando se cierra la conexion
+      websocket.onmessage = function(evt) { onMessage(evt) };
+      websocket.onError = function(evt) { onError(evt) };
+    }
+
+    function onOpen(evt) // funcion que se ejecuta cuando se abre el socket
+    {
+      writeLog("CONNECTED");
+      sendMessage("Hello world");
+    }
+ 
+    function onClose(evt) // funcion que se ejecuta cuando se cierra el socket
+    {
+      writeLog("DISCONNECTED");
+      websocket.close();
+    } 
+
+    function onMessage(evt) // funcion que se ejecuta cuando se recibe un mensaje
+    {
+      writeLog('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+    }
+
+    function onError(evt) // funcion que se ejecuta cuando hay un error
+    {
+      writeLog('<span style="color: red;">ERROR:</span> ' + evt.data);
+    }
+
+    function sendMessage(message)
+    {
+      writeLog("SENT: " + message);
+      websocket.send(message);
+    }
+
+    function writeLog(message)
+    {
+      var pre = document.createElement("p");
+      pre.innerHTML = message;
+      log.appendChild(pre);
+    }
+
+    window.addEventListener("load", init, false); // se ejecuta cuando se carga la pagina
+
+  </script>
