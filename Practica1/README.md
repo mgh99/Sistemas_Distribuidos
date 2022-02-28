@@ -10,6 +10,75 @@ You can also spin up a free Heroku dyno to test it out:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/socketio/chat-example)
 
---poner la url del ejemplo actualizado
+### Demo
+
+https://chat-example-1-copy.mgh99.repl.co/
+
+### Updates
+
+* Button for close the socket of the chat.
+
+```html
+<form>
+   <button id = "close">Close</button>
+</form>
+
+<script>
+  var close = document.getElementById('close');
+      
+        close.addEventListener("click", (e) => {
+          e.preventDefault();
+          var item = document.createElement('li');
+          item.textContext = "Te has desconectado";
+          messages.appendChild(item);
+          window.scrollTo(0, document.body.scrollHeight);
+          socket.disconnected();
+        });
+</script>
+
+```
+
+* You can send emojis on the chat
+
+```
+<style>
+   #selectEmoji {
+          border: 4px solid #333;
+          border-radius: 5px;
+          width: 10%;
+   }
+</style>
+
+<form id="form" action="">
+      <button id = "close">Close</button>
+        <input id="input" autocomplete="off" /><button>Send</button>
+      <select id = "selectEmoji" onchange = "addEmoji(value)" size = "0"</select>
+</form>
+
+<script>
+  var selectEmoji = document.getElementById("selectEmoji");
+
+  const addEmoji = (value) => {
+     input.value += String.fromCodePoint(value);
+  }
+
+  let emojiValue = 128517; //valor de los emojis
+  while(emojiValue <= 129080) {
+     const newOption = document.createElement("option");
+     newOption.textContent = String.fromCodePoint(emojiValue);
+     newOption.value = emojiValue;
+     selectEmoji.appendChild(newOption);
+     emojiValue++;
+   }
+</script>
+
+```
+-----------------------------------------------------------------------
+### Visualization 
+
+
+
+
+
 
 
