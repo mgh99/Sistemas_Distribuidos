@@ -76,7 +76,7 @@ https://chat-example-1-copy.mgh99.repl.co/
 -----------------------------------------------------------------------
 ### Visualization 
 
-![](header.png)
+![](https://github.com/mgh99/Sistemas_Distribuidos/blob/main/Practica1/img/img-chat-socket.png)
 
 
 
