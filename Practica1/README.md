@@ -12,7 +12,7 @@ You can also spin up a free Heroku dyno to test it out:
 
 ### Demo
 
-https://chat-example-1-copy.mgh99.repl.co/
+https://chatssocket.herokuapp.com/
 
 ### Updates
 
