@@ -14,6 +14,10 @@ You can also spin up a free Heroku dyno to test it out:
 
 https://chatssocket.herokuapp.com/
 
+### Notes
+
+The app runs better on Heroku than launching it from the system.
+
 ### Updates
 
 * Button for close the socket of the chat.
