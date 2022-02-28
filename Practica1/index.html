@@ -58,15 +58,25 @@
         #messages>li:nth-child(odd) {
             background: #efefef;
         }
+
+        #selectEmoji {
+          border: 4px solid #333;
+          border-radius: 5px;
+          width: 10%;
+        }
     </style>
 </head>
 
 <body>
     <ul id="messages"></ul>
     <form id="form" action="">
-        <input id="input" autocomplete="off" /><button>Send</button>
       <button id = "close">Close</button>
+        <input id="input" autocomplete="off" /><button>Send</button>
+      <select id = "selectEmoji" onchange = "addEmoji(value)" size = "0"</select>
     </form>
+
+
+  
     <script src="/socket.io/socket.io.js"></script>
   
     <script>
@@ -76,7 +86,20 @@
         var form = document.getElementById('form');
         var input = document.getElementById('input');
         var close = document.getElementById('close');
+        var selectEmoji = document.getElementById("selectEmoji");
 
+        const addEmoji = (value) => {
+          input.value += String.fromCodePoint(value);
+        }
+
+        let emojiValue = 128517; //valor de los emojis
+        while(emojiValue <= 129080) {
+          const newOption = document.createElement("option");
+          newOption.textContent = String.fromCodePoint(emojiValue);
+          newOption.value = emojiValue;
+          selectEmoji.appendChild(newOption);
+          emojiValue++;
+        }
       
         close.addEventListener("click", (e) => {
           e.preventDefault();
