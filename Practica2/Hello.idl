@@ -1,6 +1,0 @@
-module helloApp (
-    interface Hello {
-        string sayHello();
-        oneway void shutdown(); 
-    };
-);
